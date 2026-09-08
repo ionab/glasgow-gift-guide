@@ -1,0 +1,127 @@
+/*
+ * Page furniture + layout for Cascayde, built on the Broadsheet tokens in
+ * broadsheet.css. Furniture classes (.slug, .lead, .rule1/2, .date, .h-lead,
+ * .body-j) mirror the recurring patterns documented in the design handoff
+ * README so they're defined once rather than repeated per screen.
+ */
+
+/* — furniture — */
+.slug {
+  display: block; font-size: 13px; line-height: 14px; letter-spacing: 0.08em;
+  text-transform: uppercase; color: color-mix(in srgb, var(--color-text) 70%, transparent);
+}
+.lead {
+  display: flex; align-items: baseline; gap: 8px; margin: 0; font-size: 15.5px; line-height: 28px;
+  width: 100%; text-align: left; background: none; border: 0; padding: 0; font-family: inherit; color: inherit;
+}
+button.lead { cursor: pointer; }
+button.lead:hover { color: var(--color-accent-700); }
+.lead .dots { flex: 1; min-width: 24px; align-self: flex-end; margin-bottom: 0.34em; border-bottom: 1px dotted color-mix(in srgb, var(--color-text) 45%, transparent); }
+.lead .n { font-family: var(--font-heading); font-weight: var(--font-heading-weight); font-size: 17px; font-feature-settings: "pnum" 1; }
+.rule2 { height: 5px; border: 0; margin: 0; border-top: 2px solid var(--color-text); border-bottom: 1px solid var(--color-text); }
+.rule1 { height: 0; border: 0; border-top: 1px solid var(--color-text); margin: 0; }
+.date {
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 14px 28px; margin: 0; padding: 14px 0;
+  font-size: 13px; line-height: 14px; letter-spacing: 0.08em; text-transform: uppercase;
+  font-feature-settings: "pnum" 1; color: color-mix(in srgb, var(--color-text) 70%, transparent);
+}
+.h-lead {
+  font-family: var(--font-heading); font-weight: var(--font-heading-weight); letter-spacing: -0.02em;
+  margin: 0 0 0 -0.035em;
+}
+.body-j { font-size: 15.5px; line-height: 28px; text-align: justify; hyphens: auto; color: color-mix(in srgb, var(--color-text) 82%, transparent); }
+.standfirst { font-size: 17px; line-height: 28px; margin: 28px 0 0; max-width: 50ch; }
+.muted-note { font-size: 14.5px; line-height: 26px; margin: 0; color: color-mix(in srgb, var(--color-text) 78%, transparent); }
+.pull-quote {
+  font-family: var(--font-heading); font-style: italic; font-weight: 400; font-size: 30px; line-height: 42px;
+  letter-spacing: -0.01em; max-width: 32ch; margin: 0; text-indent: -0.475em;
+}
+.pull-quote-caption {
+  font-size: 15.5px; line-height: 28px; color: color-mix(in srgb, var(--color-text) 70%, transparent);
+  margin: 38px 0 0; text-indent: -1.045em;
+}
+
+/* — photo placeholder (stand-in for the design's CMYK-plate treatment) — */
+.photo-slot-figure { margin: 0; }
+.photo-slot {
+  display: flex; align-items: center; justify-content: center; text-align: center;
+  background: var(--color-neutral-200);
+  border: 1px dashed color-mix(in srgb, var(--color-text) 30%, transparent);
+  color: color-mix(in srgb, var(--color-text) 55%, transparent);
+  font-size: 13px; line-height: 20px; padding: 16px;
+}
+
+/* — shared page shell — */
+.shell { max-width: 1180px; margin: 0 auto; padding: 48px 56px 64px; }
+.btn-row { display: flex; gap: 15px; flex-wrap: wrap; align-items: center; }
+.tag-row { display: flex; flex-wrap: wrap; gap: 10px; }
+.area-list { display: grid; gap: 12px; }
+.search-row { display: flex; gap: 15px; flex-wrap: wrap; align-items: stretch; max-width: 640px; }
+.search-input { flex: 1; min-width: 240px; min-height: 38px; }
+
+/* — nav — */
+.nav-links { display: flex; align-items: center; gap: var(--space-4); }
+.nav-menu-toggle { display: none; }
+
+/* — front page — */
+.hero {
+  display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 32px 64px;
+  align-items: start; padding: 44px 0 0;
+}
+.hero-h1 { font-size: 58px; line-height: 62px; }
+.directory-body {
+  padding: 52px 0 0; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: 40px 64px; align-items: start;
+}
+.card-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.advent-quote {
+  padding: 60px 0 0; display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr);
+  gap: 40px 64px; align-items: start;
+}
+.newsletter-close { padding: 60px 0 0; }
+.newsletter-row { display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 24px; padding-top: 28px; }
+.newsletter-heading { font-family: var(--font-heading); font-weight: var(--font-heading-weight); font-size: 26px; line-height: 32px; margin: 0; }
+.newsletter-form { display: flex; gap: 15px; align-items: stretch; width: 420px; max-width: 100%; }
+.newsletter-form .input { flex: 1; min-height: 38px; }
+
+/* — map page — */
+.map-split { display: grid; grid-template-columns: minmax(0, 320px) minmax(0, 1fr); gap: 36px; align-items: start; padding-top: 36px; }
+.map-h1 { font-size: 36px; line-height: 40px; letter-spacing: -0.02em; margin: 0 0 0 -0.035em; }
+.map-caption-row { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px; padding-top: 16px; }
+#map, .photo-slot { border-radius: var(--radius-md); }
+#map { background: var(--color-neutral-200); }
+.leaflet-tile-pane { filter: grayscale(1) contrast(0.86) brightness(1.08); }
+.leaflet-container { font-family: var(--font-body); background: var(--color-neutral-200); }
+.leaflet-control-attribution { font-family: var(--font-body); font-size: 11px; background: color-mix(in srgb, var(--color-bg) 88%, transparent); }
+.leaflet-bar a { color: var(--color-text); }
+.pin { display: block; width: 14px; height: 14px; border-radius: 50%; background: var(--color-accent); box-shadow: 0 0 0 3px var(--color-bg); }
+.pin.spot { background: var(--color-accent-2); }
+.leaflet-popup-content-wrapper { border-radius: var(--radius-md); background: var(--color-bg); box-shadow: var(--shadow-md); font-family: var(--font-body); }
+.leaflet-popup-content { margin: 14px 16px; font-size: 14px; line-height: 22px; }
+.pop-k { display: block; font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase; color: color-mix(in srgb, var(--color-text) 70%, transparent); }
+.pop-t { font-family: var(--font-heading); font-weight: var(--font-heading-weight); font-size: 19px; line-height: 24px; margin: 6px 0 4px; }
+.pop-m { color: color-mix(in srgb, var(--color-text) 70%, transparent); font-size: 13px; }
+
+/* — submit form — */
+.submit-split { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 40px 72px; align-items: start; padding: 44px 0 0; }
+.submit-form { display: grid; gap: 24px; }
+.form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.form-row-3 { display: grid; grid-template-columns: 1.2fr 1.2fr 1fr; gap: 24px; }
+.form-row-2-1 { display: grid; grid-template-columns: 2fr 1fr; gap: 24px; }
+.form-grid-online { display: grid; gap: 24px; padding-top: 16px; }
+.radio-row { display: flex; gap: 20px; margin-top: 14px; }
+.form-errors { margin: 0; padding: 12px 16px; list-style: none; background: var(--color-accent-2-100); color: var(--color-accent-2-800); border-radius: var(--radius-md); font-size: 13.5px; line-height: 22px; }
+
+/* — responsive — */
+@media (max-width: 860px) {
+  .shell { padding: 24px 22px 36px; }
+  .hero, .directory-body, .advent-quote, .map-split, .submit-split, .form-row-2, .form-row-3, .form-row-2-1 {
+    grid-template-columns: 1fr;
+  }
+  .card-grid { grid-template-columns: 1fr; }
+  .hero-h1 { font-size: 34px; line-height: 37px; }
+  .nav-links { display: none; }
+  .nav-cta { display: none; }
+  .nav-menu-toggle { display: inline-flex; }
+  .newsletter-form { width: 100%; }
+}
