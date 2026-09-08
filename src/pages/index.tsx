@@ -36,6 +36,7 @@ export default function IndexPage({ location }: PageProps) {
   const featuredShops = filteredShops.filter((s) => s.channel !== "online").slice(0, 6)
   const onlineShops = filteredShops.filter((s) => s.channel !== "shopfront").slice(0, 5)
   const advent = getAdventInfo()
+  const shopCountLabel = `${SHOPS.length} independent shop${SHOPS.length === 1 ? "" : "s"}`
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -56,7 +57,7 @@ export default function IndexPage({ location }: PageProps) {
     <Layout current="directory">
       <Seo
         title="Glasgow & Lanarkshire independent shops for Christmas 2026"
-        description="Two hundred and eighty-nine independent shops across Glasgow, Lanarkshire and the Clyde Valley, sorted by neighbourhood and category — a directory for Christmas 2026, not a listicle."
+        description={`${shopCountLabel} across Glasgow, Lanarkshire and the Clyde Valley, sorted by neighbourhood and category — a directory for Christmas 2026, not a listicle.`}
         pathname="/"
         jsonLd={jsonLd}
       />
@@ -77,9 +78,7 @@ export default function IndexPage({ location }: PageProps) {
         <section className="hero">
           <div>
             <Slug style={{ marginBottom: 14 }}>Where to start</Slug>
-            <h1 className="h-lead hero-h1">
-              Two hundred and eighty-nine independent shops, sorted by the street they are on
-            </h1>
+            <h1 className="h-lead hero-h1">{shopCountLabel}, sorted by the street they are on</h1>
             <p className="standfirst">
               Every listing is a shop you can walk into this month: opening hours, what they
               actually stock, and whether they will wrap it while you wait. No chains, no

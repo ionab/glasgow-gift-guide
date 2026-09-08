@@ -2,7 +2,7 @@ import * as React from "react"
 import { Link } from "gatsby"
 
 interface NavProps {
-  current: "map" | "directory" | "list-your-shop"
+  current: "map" | "directory" | "list-your-shop" | "online-only"
 }
 
 export function Nav({ current }: NavProps) {
@@ -17,6 +17,12 @@ export function Nav({ current }: NavProps) {
         </Link>
         <Link to="/" aria-current={current === "directory" ? "page" : undefined}>
           Directory
+        </Link>
+        <Link
+          to="/online-only/"
+          aria-current={current === "online-only" ? "page" : undefined}
+        >
+          Online only
         </Link>
         <Link
           to="/list-your-shop/"

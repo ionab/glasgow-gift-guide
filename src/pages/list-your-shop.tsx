@@ -18,6 +18,7 @@ interface FormState {
   openingNote: string
   listingNote: string
   freeWrapping: boolean
+  socialLinks: string
 }
 
 const INITIAL_STATE: FormState = {
@@ -33,11 +34,28 @@ const INITIAL_STATE: FormState = {
   openingNote: "Usual hours",
   listingNote: "",
   freeWrapping: true,
+  socialLinks: "",
 }
 
 const POSTCODE_PATTERN = /^\s*(g|ml|fk)\d/i
+const FORM_NAME = "list-your-shop"
+const OPENING_OPTIONS = ["Usual hours", "Late Thursdays", "Late every night", "Sundays too"]
+
+// TypeScript's form typings don't know Netlify's non-"data-" attributes.
+const netlifyFormAttrs = {
+  "data-netlify": "true",
+  "netlify-honeypot": "bot-field",
+} as React.FormHTMLAttributes<HTMLFormElement>
 
 type SubmitState = "idle" | "submitting" | "sent" | "error"
+
+function encodeFormData(fields: Record<string, string | string[]>): string {
+  const params = new URLSearchParams()
+  for (const [key, value] of Object.entries(fields)) {
+    for (const v of Array.isArray(value) ? value : [value]) params.append(key, v)
+  }
+  return params.toString()
+}
 
 function validate(form: FormState): string[] {
   const errors: string[] = []
@@ -77,8 +95,27 @@ export default function ListYourShopPage(_props: PageProps) {
 
     setSubmitState("submitting")
     try {
-      // TODO: wire up the real listings endpoint once it exists.
-      await new Promise((resolve) => setTimeout(resolve, 600))
+      const response = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: encodeFormData({
+          "form-name": FORM_NAME,
+          shopName: form.shopName,
+          ownerName: form.ownerName,
+          channel: form.channel,
+          onlineUrl: form.onlineUrl,
+          delivery: form.delivery,
+          lastPostingDate: form.lastPostingDate,
+          street: form.street,
+          postcode: form.postcode,
+          categories: form.categories,
+          openingNote: form.openingNote,
+          listingNote: form.listingNote,
+          freeWrapping: form.freeWrapping ? "yes" : "no",
+          socialLinks: form.socialLinks,
+        }),
+      })
+      if (!response.ok) throw new Error(`Netlify Forms responded ${response.status}`)
       setSubmitState("sent")
     } catch {
       setSubmitState("error")
@@ -120,6 +157,38 @@ export default function ListYourShopPage(_props: PageProps) {
         pathname="/list-your-shop/"
       />
 
+      {/*
+        Netlify's build bot only detects forms present in the static HTML
+        output, but the real form below hides its "online only" fields
+        behind client-side state — so at build time (channel: "shopfront")
+        those field names never render. This always-present hidden twin
+        carries every possible field so Netlify registers the full schema.
+      */}
+      <form name={FORM_NAME} hidden {...netlifyFormAttrs}>
+        <input type="hidden" name="form-name" value={FORM_NAME} />
+        <input name="bot-field" />
+        <input type="text" name="shopName" />
+        <input type="text" name="ownerName" />
+        {(["shopfront", "online", "both"] as Channel[]).map((value) => (
+          <input key={value} type="radio" name="channel" value={value} />
+        ))}
+        <input type="text" name="onlineUrl" />
+        <input type="text" name="delivery" />
+        <input type="text" name="lastPostingDate" />
+        <input type="text" name="street" />
+        <input type="text" name="postcode" />
+        {CATEGORIES.map((category) => (
+          <input key={category} type="checkbox" name="categories" value={category} />
+        ))}
+        {OPENING_OPTIONS.map((opt) => (
+          <input key={opt} type="radio" name="openingNote" value={opt} />
+        ))}
+        <input type="text" name="listingNote" />
+        <input type="radio" name="freeWrapping" value="yes" />
+        <input type="radio" name="freeWrapping" value="no" />
+        <textarea name="socialLinks" />
+      </form>
+
       <div className="shell">
         <RuleThickThin />
         <Dateline
@@ -149,7 +218,20 @@ export default function ListYourShopPage(_props: PageProps) {
             </div>
           </div>
 
-          <form className="submit-form" onSubmit={handleSubmit} noValidate>
+          <form
+            className="submit-form"
+            name={FORM_NAME}
+            method="POST"
+            onSubmit={handleSubmit}
+            noValidate
+            {...netlifyFormAttrs}
+          >
+            <input type="hidden" name="form-name" value={FORM_NAME} />
+            <p hidden>
+              <label>
+                Don&rsquo;t fill this out: <input name="bot-field" />
+              </label>
+            </p>
             {errors.length > 0 && (
               <ul className="form-errors" role="alert">
                 {errors.map((error) => (
@@ -205,6 +287,18 @@ export default function ListYourShopPage(_props: PageProps) {
                 Online-only shops are listed by town or neighbourhood too — we use the studio or
                 dispatch address, and it is never shown publicly.
               </p>
+            </div>
+
+            <div className="field">
+              <label htmlFor="cy-social">Social media</label>
+              <textarea
+                className="input"
+                id="cy-social"
+                value={form.socialLinks}
+                onChange={(e) => setForm({ ...form, socialLinks: e.target.value })}
+                placeholder="Instagram, Facebook, TikTok — one link or handle per line"
+                rows={3}
+              />
             </div>
 
             {isOnline && (
@@ -293,7 +387,7 @@ export default function ListYourShopPage(_props: PageProps) {
             <div className="field">
               <label>December opening</label>
               <div className="seg" style={{ marginTop: 10 }} role="radiogroup" aria-label="December opening">
-                {["Usual hours", "Late Thursdays", "Late every night", "Sundays too"].map((opt) => (
+                {OPENING_OPTIONS.map((opt) => (
                   <label className="seg-opt" key={opt}>
                     <input
                       type="radio"

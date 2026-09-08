@@ -1,8 +1,10 @@
 import * as React from "react"
 import { Nav } from "@/components/nav"
 
+type NavCurrent = React.ComponentProps<typeof Nav>["current"]
+
 interface LayoutProps {
-  current: "map" | "directory" | "list-your-shop"
+  current: NavCurrent
   children: React.ReactNode
 }
 

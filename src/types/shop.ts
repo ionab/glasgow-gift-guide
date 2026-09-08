@@ -9,7 +9,7 @@ export type Category =
   | "Jewellery"
   | "Toys & games"
   | "Plants & flowers"
-  | "Whisky"
+  | "Online only"
 
 export type Channel = "shopfront" | "online" | "both"
 
@@ -39,6 +39,8 @@ export interface Shop {
   lastPostingDate?: string
   freeWrapping?: boolean
   note?: string
+  /** Shop or studio website, when known. */
+  url?: string
 }
 
 export const CATEGORIES: Category[] = [
@@ -52,5 +54,5 @@ export const CATEGORIES: Category[] = [
   "Jewellery",
   "Toys & games",
   "Plants & flowers",
-  "Whisky",
+  "Online only",
 ]

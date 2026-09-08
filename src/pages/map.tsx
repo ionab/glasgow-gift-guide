@@ -2,13 +2,15 @@ import * as React from "react"
 import { Link, type PageProps } from "gatsby"
 import { Layout } from "@/components/layout"
 import { Seo } from "@/components/seo"
-import { Slug, RuleThickThin, RuleThin, Dateline, LeadRow, Tag, SegmentedControl } from "@/components/furniture"
+import { Slug, RuleThickThin, RuleThin, Dateline, LeadRow, Tag } from "@/components/furniture"
 import { ClientOnlyMap } from "@/components/map/client-only-map"
 import { DEFAULT_CENTER, DEFAULT_ZOOM, type FlyTarget } from "@/components/map/constants"
 import { SHOPS, SHOPFRONT_COUNT, ONLINE_ONLY_COUNT } from "@/data/shops"
 import { CATEGORIES } from "@/types/shop"
 import { useDirectoryFilters } from "@/hooks/use-directory-filters"
 import { filterShops, getAreasWithCounts } from "@/utils/filters"
+
+const PINNABLE_CATEGORIES = CATEGORIES.filter((category) => category !== "Online only")
 
 export default function MapPage({ location }: PageProps) {
   const { filters, update, toggleCategory } = useDirectoryFilters(location.search)
@@ -18,12 +20,11 @@ export default function MapPage({ location }: PageProps) {
     nonce: 0,
   })
 
-  const filteredShops = React.useMemo(() => filterShops(SHOPS, filters), [filters])
+  // The map only ever shows pinnable (shopfront) shops — online-only shops
+  // have no coordinates and live on their own page instead, see /online-only/.
+  const shopfrontShops = React.useMemo(() => SHOPS.filter((shop) => shop.channel !== "online"), [])
+  const filteredShops = React.useMemo(() => filterShops(shopfrontShops, filters), [shopfrontShops, filters])
   const areasWithCounts = React.useMemo(() => getAreasWithCounts(filteredShops), [filteredShops])
-  const onlineOnlyShops = React.useMemo(
-    () => filteredShops.filter((shop) => shop.channel === "online"),
-    [filteredShops]
-  )
 
   function flyToArea(center: FlyTarget["center"], zoom: number) {
     setFlyTarget((current) => ({ center, zoom, nonce: current.nonce + 1 }))
@@ -43,8 +44,10 @@ export default function MapPage({ location }: PageProps) {
           items={[
             "Glasgow, Lanarkshire & the Clyde Valley",
             "Christmas 2026",
-            `${SHOPFRONT_COUNT} shopfronts`,
-            `${ONLINE_ONLY_COUNT} online only`,
+            `${SHOPFRONT_COUNT} shopfronts on the map`,
+            <Link key="online-only" to="/online-only/">
+              {ONLINE_ONLY_COUNT} online only, on their own page
+            </Link>,
           ]}
         />
         <RuleThin />
@@ -56,23 +59,11 @@ export default function MapPage({ location }: PageProps) {
               Pick a neighbourhood or town and the map goes there — the city, the burghs and the
               Clyde Valley. Magenta pins are today&rsquo;s advent shop and the ones open latest.
             </p>
-            <div style={{ margin: "22px 0 0", width: "fit-content", maxWidth: "100%" }}>
-              <SegmentedControl
-                ariaLabel="Filter by channel"
-                value={filters.channel}
-                onChange={(channel) => update({ channel })}
-                options={[
-                  { value: "all", label: `All ${SHOPS.length}` },
-                  { value: "shopfront", label: "Shopfronts" },
-                  { value: "online", label: "Online only" },
-                ]}
-              />
-            </div>
-            <div className="tag-row" style={{ marginTop: 20 }}>
+            <div className="tag-row" style={{ marginTop: 22 }}>
               <Tag selected={filters.categories.length === 0} onClick={() => update({ categories: [] })}>
-                All {SHOPS.length}
+                All {SHOPFRONT_COUNT}
               </Tag>
-              {CATEGORIES.map((category) => (
+              {PINNABLE_CATEGORIES.map((category) => (
                 <Tag
                   key={category}
                   selected={filters.categories.includes(category)}
@@ -96,23 +87,10 @@ export default function MapPage({ location }: PageProps) {
               ))}
             </div>
 
-            <Slug style={{ margin: "30px 0 8px" }}>Online only, no pin</Slug>
-            <p className="muted-note" style={{ marginBottom: 14 }}>
-              Makers across the region who post rather than open a door. Listed by the town or
-              neighbourhood they work in.
-            </p>
-            <div className="area-list">
-              {onlineOnlyShops.map((shop) => (
-                <LeadRow
-                  key={shop.id}
-                  label={`${shop.name} — ${shop.street}`}
-                  value={shop.lastPostingDate ? `Post by ${shop.lastPostingDate}` : shop.hours}
-                  spot={shop.spot}
-                />
-              ))}
-            </div>
             <p className="muted-note" style={{ marginTop: 24 }}>
-              Missing your street? <Link to="/list-your-shop/">Add a shop</Link>.
+              Looking for a maker with no shopfront? See the{" "}
+              <Link to="/online-only/">online-only shops</Link>. Missing your street?{" "}
+              <Link to="/list-your-shop/">Add a shop</Link>.
             </p>
           </div>
 
@@ -141,7 +119,8 @@ export default function MapPage({ location }: PageProps) {
               </div>
             </div>
             <p className="muted-note" style={{ marginTop: 8 }}>
-              Online-only shops have no pin — they are in the list on the left.
+              Online-only shops don&rsquo;t have a pin — see them on{" "}
+              <Link to="/online-only/">their own page</Link>.
             </p>
           </div>
         </div>
