@@ -57,7 +57,7 @@ export default function MapPage({ location }: PageProps) {
             <h1 className="map-h1">Walk it, don&rsquo;t scroll it</h1>
             <p className="standfirst" style={{ fontSize: 15.5, lineHeight: "27px" }}>
               Pick a neighbourhood or town and the map goes there — the city, the burghs and the
-              Clyde Valley. Magenta pins are today&rsquo;s advent shop and the ones open latest.
+              Clyde Valley. Holly-green pins are today&rsquo;s advent shop and the ones open latest.
             </p>
             <div className="tag-row" style={{ marginTop: 22 }}>
               <Tag selected={filters.categories.length === 0} onClick={() => update({ categories: [] })}>

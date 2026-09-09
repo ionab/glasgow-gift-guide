@@ -248,7 +248,7 @@ export default function IndexPage({ location }: PageProps) {
             <p className="body-j" style={{ margin: "24px 0 0", maxWidth: "44ch" }}>
               One shop a day from the first of December to Christmas Eve, chosen by the people
               who live on that street. {advent.isLive ? "Today's" : "Each day's"} shop is
-              highlighted in magenta on the map.
+              highlighted in holly green on the map.
             </p>
           </div>
           <figure style={{ margin: 0 }}>

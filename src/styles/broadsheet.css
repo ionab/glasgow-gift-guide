@@ -15,12 +15,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap");
 
 :root {
-  --color-bg: #f3f2f2;
-  --color-surface: #eae9e9;
-  --color-text: #201e1d;
-  --color-accent: #0088b0;
-  --color-accent-2: #d6006c;
-  --color-divider: color-mix(in srgb, #201e1d 16%, transparent);
+  --color-bg: #f6f1ea;
+  --color-surface: #ece4d6;
+  --color-text: #221f1d;
+  --color-accent: #6b1f2f;
+  --color-accent-2: #1f3d2c;
+  --color-divider: color-mix(in srgb, #221f1d 16%, transparent);
+  --color-error-bg: #fbe9ea;
+  --color-error-text: #7a1f27;
 
   --color-neutral-100: #f8f4f4;
   --color-neutral-200: #eae7e7;
@@ -32,25 +34,25 @@
   --color-neutral-800: #444141;
   --color-neutral-900: #2d2b2b;
 
-  --color-accent-100: #e9f8ff;
-  --color-accent-200: #cbeeff;
-  --color-accent-300: #99e0ff;
-  --color-accent-400: #62c5ee;
-  --color-accent-500: #38a6cf;
-  --color-accent-600: #1186ac;
-  --color-accent-700: #006786;
-  --color-accent-800: #004961;
-  --color-accent-900: #0a303e;
+  --color-accent-100: #f9eaeb;
+  --color-accent-200: #f1d2d6;
+  --color-accent-300: #e0a3ac;
+  --color-accent-400: #c96f7e;
+  --color-accent-500: #ab4457;
+  --color-accent-600: #82283a;
+  --color-accent-700: #631e2c;
+  --color-accent-800: #45151f;
+  --color-accent-900: #2a0d13;
 
-  --color-accent-2-100: #fff1f4;
-  --color-accent-2-200: #ffdee6;
-  --color-accent-2-300: #ffc0d0;
-  --color-accent-2-400: #ff90b1;
-  --color-accent-2-500: #ff458e;
-  --color-accent-2-600: #d82071;
-  --color-accent-2-700: #aa0b56;
-  --color-accent-2-800: #790e3d;
-  --color-accent-2-900: #4b1528;
+  --color-accent-2-100: #eaf2ec;
+  --color-accent-2-200: #cfe1d5;
+  --color-accent-2-300: #a3c7b0;
+  --color-accent-2-400: #74a687;
+  --color-accent-2-500: #4f8267;
+  --color-accent-2-600: #2f5f45;
+  --color-accent-2-700: #17301f;
+  --color-accent-2-800: #102319;
+  --color-accent-2-900: #0a1710;
 
   --font-heading: "Source Serif 4", system-ui, sans-serif;
   --font-heading-weight: 600;
