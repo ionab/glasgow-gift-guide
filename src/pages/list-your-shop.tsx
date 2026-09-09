@@ -129,7 +129,7 @@ export default function ListYourShopPage(_props: PageProps) {
       <Layout current="list-your-shop">
         <Seo
           title="List your shop"
-          description="Add your independent shop to the Cascayde directory before December — free, and always will be."
+          description="Add your independent shop to the Glasgow Gift Guide directory before December — free, and always will be."
           pathname="/list-your-shop/"
         />
         <div className="shell">
@@ -153,7 +153,7 @@ export default function ListYourShopPage(_props: PageProps) {
     <Layout current="list-your-shop">
       <Seo
         title="List your shop"
-        description="Add your independent shop to the Cascayde directory before December — free, and always will be."
+        description="Add your independent shop to the Glasgow Gift Guide directory before December — free, and always will be."
         pathname="/list-your-shop/"
       />
 

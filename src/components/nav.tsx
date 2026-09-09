@@ -10,7 +10,9 @@ export function Nav({ current }: NavProps) {
 
   return (
     <nav className="nav">
-      <span className="nav-brand">Cascayde</span>
+      <Link to="/" className="nav-brand">
+        Glasgow Gift Guide
+      </Link>
       <div className={`nav-links${menuOpen ? " nav-links-open" : ""}`}>
         <Link to="/map/" aria-current={current === "map" ? "page" : undefined}>
           Map

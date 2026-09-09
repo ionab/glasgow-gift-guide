@@ -41,7 +41,7 @@ export default function IndexPage({ location }: PageProps) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    name: "Cascayde — independent shops directory",
+    name: "Glasgow Gift Guide — independent shops directory",
     itemListElement: SHOPS.slice(0, 20).map((shop, index) => ({
       "@type": "ListItem",
       position: index + 1,

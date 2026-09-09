@@ -11,7 +11,7 @@ export default function OnlineOnlyPage(_props: PageProps) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    name: "Cascayde — online-only independent shops",
+    name: "Glasgow Gift Guide — online-only independent shops",
     itemListElement: onlineShops.map((shop, index) => ({
       "@type": "ListItem",
       position: index + 1,

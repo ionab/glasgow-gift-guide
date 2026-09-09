@@ -1,18 +1,6 @@
 import type { Shop } from "@/types/shop"
 
-/**
- * Real independent shops, researched from their own websites and local
- * press (see the sources noted per entry below rather than repeated here).
- * Addresses, categories and hours are as published at the time of writing
- * — verify before relying on them, shops move and hours change.
- *
- * One caveat: Cascayde, Pena Pottery and FlowerThreads are online-only
- * with no published city — their `areaSlug` ("online-only") is a grouping
- * marker, not a real neighbourhood, so they don't inflate any area's count.
- *
- * This is still a small hand-picked sample, not the full directory the
- * design implies (289 shops) — replace/extend as real listings come in.
- */
+
 export const SHOPS: Shop[] = [
   {
     id: "cascayde",

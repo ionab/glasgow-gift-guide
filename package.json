@@ -1,7 +1,7 @@
 {
-  "name": "cascayde",
+  "name": "Glasgow Gift Guide",
   "private": true,
-  "description": "Cascayde — a directory of independent shops across Glasgow, Lanarkshire & the Clyde Valley for Christmas 2026.",
+  "description": "Glasgow Gift Guide — a directory of independent shops across Glasgow, Lanarkshire & the Clyde Valley for Christmas 2026.",
   "version": "0.1.0",
   "author": "Kelsie",
   "scripts": {

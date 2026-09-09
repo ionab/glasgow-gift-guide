@@ -1,7 +1,7 @@
 import type { Area } from "@/types/shop"
 
 /**
- * Placeholder area list, ported from the Cascayde design handoff.
+ * Placeholder area list, ported from the Glasgow Gift Guide design handoff.
  * Replace with real listings data once it exists.
  */
 export const AREAS: Area[] = [

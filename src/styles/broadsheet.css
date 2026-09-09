@@ -1,6 +1,6 @@
 /*
  * Broadsheet — design-system tokens and component classes, ported from the
- * Cascayde design handoff's `_ds/broadsheet-<id>/styles.css`. This file is the
+ * Glasgow Gift Guide design handoff's `_ds/broadsheet-<id>/styles.css`. This file is the
  * source of truth for tokens; page-specific layout lives in global.css.
  *
  * Not ported: the `.cmyk` / `.halftone` process-plate photograph treatment
@@ -158,9 +158,10 @@ textarea.input { min-height: 90px; resize: vertical; }
 button.tag { cursor: pointer; }
 
 .nav { display: flex; align-items: center; gap: var(--space-4); padding: var(--space-3) var(--space-4); border-bottom: none; }
-.nav-brand { font-family: var(--font-heading); font-weight: var(--font-heading-weight); font-size: 18px; margin-right: auto; }
 .nav a { color: inherit; text-decoration: none; font-size: 14px; }
 .nav a:hover, .nav a[aria-current="page"] { color: var(--color-accent); }
+.nav a.nav-brand { font-family: var(--font-heading); font-weight: var(--font-heading-weight); font-size: 18px; margin-right: auto; }
+.nav a.nav-brand:hover { color: inherit; }
 
 .table { width: 100%; border-collapse: collapse; font-size: 14px; }
 .table th { text-align: left; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: color-mix(in srgb, var(--color-text) 60%, transparent); padding: var(--space-2); border-bottom: 1px solid var(--color-divider); }
