@@ -8,7 +8,7 @@ const config: GatsbyConfig = {
     title: "Glasgow Gift Guide",
     titleTemplate: "%s · Glasgow Gift Guide",
     description:
-      "Independent shops across Glasgow, Lanarkshire & the Clyde Valley for Christmas 2026 — browse by neighbourhood, category or map, or list your own shop.",
+      "Independent shops across the Greater Glasgow area for Christmas 2026 — browse by neighbourhood, category or map, or list your own shop.",
     siteUrl,
     author: "Glasgow Gift Guide",
   },

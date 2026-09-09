@@ -57,7 +57,7 @@ export default function IndexPage({ location }: PageProps) {
     <Layout current="directory">
       <Seo
         title="Glasgow & Lanarkshire independent shops for Christmas 2026"
-        description={`${shopCountLabel} across Glasgow, Lanarkshire and the Clyde Valley, sorted by neighbourhood and category — a directory for Christmas 2026, not a listicle.`}
+        description={`${shopCountLabel} across the Greater Glasgow area, sorted by neighbourhood and category — a directory for Christmas 2026, not a listicle.`}
         pathname="/"
         jsonLd={jsonLd}
       />
@@ -66,7 +66,7 @@ export default function IndexPage({ location }: PageProps) {
         <RuleThickThin />
         <Dateline
           items={[
-            "Glasgow, Lanarkshire & the Clyde Valley",
+            "Greater Glasgow area",
             "Christmas 2026",
             `${SHOPS.length} shops listed`,
             advent.label,
@@ -163,6 +163,22 @@ export default function IndexPage({ location }: PageProps) {
                 />
               ))}
             </div>
+            {areasByRegion["East Renfrewshire"].length > 0 && (
+              <>
+                <Slug style={{ margin: "36px 0 20px" }}>East Renfrewshire</Slug>
+                <div className="area-list">
+                  {areasByRegion["East Renfrewshire"].map((area) => (
+                    <LeadRow
+                      key={area.slug}
+                      as="button"
+                      label={area.name}
+                      value={area.count}
+                      onClick={() => update({ area: filters.area === area.slug ? null : area.slug })}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
             <Slug style={{ margin: "36px 0 20px" }}>Lanarkshire & the Clyde Valley</Slug>
             <div className="area-list">
               {areasByRegion["Lanarkshire & the Clyde Valley"].map((area) => (

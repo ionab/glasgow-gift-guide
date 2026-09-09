@@ -77,14 +77,15 @@ export function getAreasWithCounts(shops: Shop[] = SHOPS): AreaWithCount[] {
   for (const shop of shops) {
     counts.set(shop.areaSlug, (counts.get(shop.areaSlug) ?? 0) + 1)
   }
-  return AREAS.map((area) => ({ ...area, count: counts.get(area.slug) ?? 0 })).sort(
-    (a, b) => b.count - a.count
-  )
+  return AREAS.map((area) => ({ ...area, count: counts.get(area.slug) ?? 0 }))
+    .filter((area) => area.count > 0)
+    .sort((a, b) => b.count - a.count)
 }
 
 export function groupAreasByRegion(areas: AreaWithCount[]): Record<Area["region"], AreaWithCount[]> {
   return {
     Glasgow: areas.filter((a) => a.region === "Glasgow"),
+    "East Renfrewshire": areas.filter((a) => a.region === "East Renfrewshire"),
     "Lanarkshire & the Clyde Valley": areas.filter(
       (a) => a.region === "Lanarkshire & the Clyde Valley"
     ),

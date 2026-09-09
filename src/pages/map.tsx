@@ -34,7 +34,7 @@ export default function MapPage({ location }: PageProps) {
     <Layout current="map">
       <Seo
         title="Map — browse shops by neighbourhood"
-        description="A live map of independent shops across Glasgow, Lanarkshire and the Clyde Valley — pick a neighbourhood or town and see who's there."
+        description="A live map of independent shops across the Greater Glasgow area — pick a neighbourhood or town and see who's there."
         pathname="/map/"
       />
 
@@ -42,7 +42,7 @@ export default function MapPage({ location }: PageProps) {
         <RuleThickThin />
         <Dateline
           items={[
-            "Glasgow, Lanarkshire & the Clyde Valley",
+            "Greater Glasgow area",
             "Christmas 2026",
             `${SHOPFRONT_COUNT} shopfronts on the map`,
             <Link key="online-only" to="/online-only/">

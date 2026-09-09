@@ -18,7 +18,7 @@ export type LatLng = [number, number]
 export interface Area {
   slug: string
   name: string
-  region: "Glasgow" | "Lanarkshire & the Clyde Valley"
+  region: "Glasgow" | "East Renfrewshire" | "Lanarkshire & the Clyde Valley"
   centre: LatLng
   zoom: number
 }

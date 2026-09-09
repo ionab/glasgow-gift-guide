@@ -23,7 +23,7 @@ export default function OnlineOnlyPage(_props: PageProps) {
     <Layout current="online-only">
       <Seo
         title="Online-only shops"
-        description="Independent makers and sellers across Glasgow, Lanarkshire and the Clyde Valley with no shopfront — same region, ordered from the sofa."
+        description="Independent makers and sellers across the Greater Glasgow area with no shopfront — same region, ordered from the sofa."
         pathname="/online-only/"
         jsonLd={jsonLd}
       />
